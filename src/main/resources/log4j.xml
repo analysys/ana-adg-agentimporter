@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+	<appender name="terminal" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="importerAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="/tmp/logs/import.log" />
+		<param name="ImmediateFlush" value="true"/>
+		<param name="Threshold" value="info"></param>
+		<param name="MaxBackupIndex" value="10" />
+		<param name="MaxFileSize" value="300MB" />
+		<param name="Append" value="true"></param>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] {%c:%L}-%m%n"></param>
+		</layout>
+	</appender>
+	
+	<root>
+		<level value="info" />
+		<appender-ref ref="importerAppender" />
+	</root>
+</log4j:configuration>

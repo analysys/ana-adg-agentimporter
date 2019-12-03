@@ -1,0 +1,23 @@
+#!/bin/bash
+
+base_dir=$(cd "$(dirname "$0")";pwd)
+
+jar="."
+for f in $base_dir/../lib/*.jar
+do
+  jar=$jar:$f
+done
+
+java_cmd=""
+
+if type -p java; then
+    java_cmd=`which java`
+elif [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]];  then
+    java_cmd="$JAVA_HOME/bin/java"
+else
+    echo "No JDK, Please install JDK first."
+    exit 1
+fi
+
+cd $base_dir
+$java_cmd -server -Dfile.encoding=UTF-8 -Xms128m -Xmx256m -cp $jar cn.com.analysys.agentimpoter.listener.TailerMain
