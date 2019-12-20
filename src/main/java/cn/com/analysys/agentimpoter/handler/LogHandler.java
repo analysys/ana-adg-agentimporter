@@ -1,10 +1,9 @@
 package cn.com.analysys.agentimpoter.handler;
 
-import cn.com.analysys.agentimpoter.util.ConstantTool;
+import cn.com.analysys.agentimpoter.sender.Sender;
 import cn.com.analysys.agentimpoter.util.LoggerUtil;
 
 public class LogHandler {
-	
 	private String lineTxt;
 	
 	public LogHandler(String lineTxt){
@@ -19,10 +18,12 @@ public class LogHandler {
 	}
 	
 	public String handle(){
+		for(Sender sender : HandlerChain.getSenders()){
 		try {
-			return new MessageSender(ConstantTool.SERVER_URL, null, lineTxt).send();
+				sender.send(lineTxt);
 		} catch (Exception e) {
 			LoggerUtil.error(e.getMessage(), e);
+		}
 		}
 		return null;
 	}

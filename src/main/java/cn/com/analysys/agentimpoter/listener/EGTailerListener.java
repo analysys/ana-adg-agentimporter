@@ -4,11 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import cn.com.analysys.agentimpoter.handler.LogHandler;
+import cn.com.analysys.agentimpoter.util.ConstantTool;
 import cn.com.analysys.agentimpoter.util.LoggerUtil;
 import cn.com.analysys.agentimpoter.util.ThreadPoolUtil;
 
 public class EGTailerListener implements TailerListener{
-	private int logPrintLines = 10000;
 	
 	@Override
 	public void init(Tailer tailer) {}
@@ -27,7 +27,7 @@ public class EGTailerListener implements TailerListener{
 		if (line != null && line.trim().length() > 0) {
 			try {
 				new LogHandler(line).doChain().handle();
-				if (ThreadPoolUtil.getCounter() % logPrintLines == 0) 
+				if (ThreadPoolUtil.getCounter() % ConstantTool.logPrintLines == 0) 
 					LoggerUtil.info(String.format("Total: %s Time: %s", ThreadPoolUtil.getCounter(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
 			} catch (Exception e) {
 				LoggerUtil.error(e.getMessage(), e);

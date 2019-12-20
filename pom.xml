@@ -54,6 +54,16 @@
 		    <artifactId>netty-common</artifactId>
 		    <version>4.1.42.Final</version>
 		</dependency>
+	<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka_2.10</artifactId>
+			<version>0.8.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.60</version>
+		</dependency>
 	</dependencies>
 
 	<build>
