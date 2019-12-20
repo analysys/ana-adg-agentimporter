@@ -82,11 +82,12 @@ public class KafkaSender implements Sender{
     }
     
     static class SingletonClassInstance {
-    	private static Producer<byte[], byte[]> producer;
+    	private static Object obj = new Object();
+    	private static Producer<byte[], byte[]> producer = null;
     	
 		public static Producer<byte[], byte[]> getProducer(){
 			if(producer == null){
-				synchronized (producer) {
+				synchronized (obj) {
 					if(producer == null){
 						Properties pro = new Properties();
 						pro.put("metadata.broker.list", "127.0.0.1:9092");
