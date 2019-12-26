@@ -20,4 +20,4 @@ else
 fi
 
 cd $base_dir
-$java_cmd -server -Dfile.encoding=UTF-8 -Xms128m -Xmx256m -cp $jar cn.com.analysys.agentimpoter.listener.TailerMain
+$java_cmd -server -Dfile.encoding=UTF-8 -Xms128m -Xmx256m -cp $jar cn.com.analysys.agentimpoter.main.TailerMain

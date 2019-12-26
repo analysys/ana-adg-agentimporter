@@ -5,6 +5,7 @@ import java.io.File;
 public class ConstantTool {
 	public static final int TAILER_FILE_DELAY = 2000;
 	public static final long TAILER_FILE_INDEX_POSITION = -99L;
+	public static int logPrintLines = 10000;
 	public static final GeneralRule RULE;
 	public static final String LOG_PREFIX;
 	public static final String SERVER_URL;
@@ -18,6 +19,9 @@ public class ConstantTool {
 	private static final String DEFAULT_LOG_PREFIX = "datas_";
 	public static final long waitTimeMill = 300000;
 	public static final String FOLDER_SPLIT = File.separator;
+	public static final String EVENT_TOPIC_NAME = "event";
+	public static final String PROFILE_TOPIC_NAME = "profile";
+	public static final String PROFILE = "$profile_set,$profile_set_once,$profile_increment,$profile_append,$profile_unset,$profile_delete,$alias";
 	
 	static {
 		String dataSplit = PropertiesUtil.getString("ana.logfile.splittype", "hour");

@@ -91,8 +91,8 @@ public class Tailer implements Runnable {
 			while (isRun()) {
 				long length = file.length();
 				if (length <= position) {
-					LoggerUtil.info(String.format("%s: noroll, legth=%s, position=%s", file.getName(), length, position));
 					next();
+					LoggerUtil.info(String.format("%s: noroll, legth=%s, position=%s", file.getName(), length, position));
 					try {Thread.sleep(delayMillis*2);} catch (Exception e) {}
 				} else {
 					try {

@@ -22,6 +22,11 @@
 		</layout>
 	</appender>
 	
+	<logger name="kafka" additivity="false">
+	    <level value = "warn" />
+	    <appender-ref ref="importerAppender" />
+	</logger>
+	
 	<root>
 		<level value="info" />
 		<appender-ref ref="importerAppender" />

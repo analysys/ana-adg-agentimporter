@@ -1,4 +1,4 @@
-package cn.com.analysys.agentimpoter.listener;
+package cn.com.analysys.agentimpoter.main;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -6,6 +6,8 @@ import java.io.FilenameFilter;
 import cn.com.analysys.agentimpoter.handler.HandlerChain;
 import cn.com.analysys.agentimpoter.handler.StandardJsonHandler;
 import cn.com.analysys.agentimpoter.listener.EGTailerListener;
+import cn.com.analysys.agentimpoter.listener.Tailer;
+import cn.com.analysys.agentimpoter.sender.MessageSender;
 import cn.com.analysys.agentimpoter.util.ConstantTool;
 import cn.com.analysys.agentimpoter.util.LoggerUtil;
 import cn.com.analysys.agentimpoter.util.PropertiesUtil;
@@ -25,7 +27,8 @@ public class TailerMain {
 			System.exit(1);
 		}
 		String appId = PropertiesUtil.getString("ana.logfile.appid");
-		HandlerChain.addLast(new StandardJsonHandler());
+		HandlerChain.addLastHandler(new StandardJsonHandler());
+		HandlerChain.addLastSender(new MessageSender(ConstantTool.SERVER_URL, null));
 		init();
 		start(appId == null || appId.trim().length() == 0 ? "" : appId);
 	}
