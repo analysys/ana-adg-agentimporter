@@ -164,6 +164,8 @@ public class LoggerUtil {
 				if(!new File(dir, name).isFile())
 					return false;
 				boolean matchNameFile = name.startsWith(ConstantTool.LOG_PREFIX);
+				if(!matchNameFile)
+					return false;
 				boolean nextTime = false;
 				String fileHour = name.substring(name.lastIndexOf(ConstantTool.DEFAULT_LOG_NAME_SPLIT) + 1, name.lastIndexOf("."));
 		    	nextTime = Long.valueOf(dateHour) < Long.valueOf(fileHour);
